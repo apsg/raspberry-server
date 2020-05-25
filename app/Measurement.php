@@ -19,4 +19,9 @@ class Measurement extends Model
         'temp',
         'humidity',
     ];
+
+    public static function getCurrent() : ?self
+    {
+        return static::latest()->first();
+    }
 }
