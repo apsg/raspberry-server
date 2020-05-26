@@ -16,7 +16,9 @@
 
                         <p>Temperatura: {{ $current->temp ?? '?' }}°C</p>
                         <p>Wilgotność: {{ $current->humidity ?? '?' }}%</p>
-
+                        @if($current!==null)
+                            <p>Data ostatniego pomiaru: {{ $current->created_at->diffForHumans() }}</p>
+                        @endif
                     </div>
                 </div>
             </div>
