@@ -9,7 +9,7 @@ class MeasurementsStoreRequest extends FormRequest
     {
         return [
             'temp'     => 'required|numeric',
-            'humidity' => 'required|numeric',
+            'humidity' => 'required|numeric|min:0|max:100',
         ];
     }
 }
