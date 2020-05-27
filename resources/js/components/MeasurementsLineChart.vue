@@ -17,8 +17,7 @@
                             pointBackgroundColor: '#ff0000',
                             pointBorderColor: '#ff0000',
                             borderColor: '#ff0000',
-                            yAxisId:0,
-                            yAxesGroup: 'A',
+                            yAxisId: 'y-temp',
                         },
                         {
                             data: [],
@@ -26,29 +25,35 @@
                             pointBackgroundColor: '#00ff00',
                             pointBorderColor: '#00ff00',
                             borderColor: '#00ff00',
-                            yAxesGroup: 'B',
+                            yAxisId: 'y-hum',
                         }
                     ],
                 },
-                'options': {
+                options: {
                     scales: {
                         xAxes: [{
                             type: 'time'
                         }],
                         yAxes: [
                             {
-                                name: 'Temperatura',
+                                id: 'y-temp',
                                 type: 'linear',
                                 position: 'left',
-                                scalePositionLeft: true
+                                scalePositionLeft: true,
+                                ticks: {
+                                    min: 0,
+                                    max: 40
+                                }
                             },
                             {
-                                name: 'Wilgotność',
+                                id: 'y-hum',
                                 type: 'linear',
                                 position: 'right',
                                 scalePositionLeft: false,
-                                min: 0,
-                                max: 100
+                                ticks: {
+                                    min: 0,
+                                    max: 100
+                                },
                             }
                         ]
                     }
@@ -65,17 +70,14 @@
                 axios.get('/api/measurements').then(response => {
                     console.log(response.data);
                     this.measurements = response.data;
+                    this.data.labels = this.measurements.map(function (item) {
+                        return new Date(item.created_at);
+                    });
                     this.data.datasets[0].data = this.measurements.map(function (item) {
-                        return {
-                            x: new Date(item.created_at),
-                            y: item.temp
-                        }
+                        return item.temp;
                     });
                     this.data.datasets[1].data = this.measurements.map(function (item) {
-                        return {
-                            x: new Date(item.created_at),
-                            y: item.humidity
-                        }
+                        return item.humidity
                     });
                     this.renderChart(this.data, this.options)
                 });
