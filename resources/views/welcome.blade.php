@@ -19,6 +19,8 @@
                         @if($current!==null)
                             <p>Data ostatniego pomiaru: {{ $current->created_at->diffForHumans() }}</p>
                         @endif
+
+                        <measurements-line-chart></measurements-line-chart>
                     </div>
                 </div>
             </div>

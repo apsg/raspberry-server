@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'measurements', 'middleware' => 'auth:api'], function () {
-    Route::post('/', 'Api\MeasurementsController@store');
+Route::group(['prefix' => 'measurements', 'middleware' => 'api'], function () {
+    Route::post('/', 'Api\MeasurementsController@store')->middleware('auth:api');
+    Route::get('/', 'Api\MeasurementsController@index');
 });
