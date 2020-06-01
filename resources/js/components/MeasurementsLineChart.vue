@@ -17,7 +17,7 @@
                             pointBackgroundColor: '#ff0000',
                             pointBorderColor: '#ff0000',
                             borderColor: '#ff0000',
-                            yAxisId: 'y-temp',
+                            yAxisID: 'y-temp',
                         },
                         {
                             data: [],
@@ -25,7 +25,7 @@
                             pointBackgroundColor: '#00ff00',
                             pointBorderColor: '#00ff00',
                             borderColor: '#00ff00',
-                            yAxisId: 'y-hum',
+                            yAxisID: 'y-hum',
                         }
                     ],
                 },
